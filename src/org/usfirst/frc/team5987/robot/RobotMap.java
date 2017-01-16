@@ -29,6 +29,8 @@ public class RobotMap {
 	public static DigitalSource rightShooterChanelA;
 	public static DigitalSource rightShooterChanelB;
 	public static int shooterAngleSensorPort;
+
+	public static int SortingServoPort;
     
     // If you are using multiple modules, make sure to define both the port
     // number and the module. For example you with a rangefinder:
