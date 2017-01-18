@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5987.robot.commands;
 
-import org.usfirst.frc.team5987.robot.RobotMap;
 import org.usfirst.frc.team5987.robot.subsystems.ClimbingSubsystem;
 
 import edu.wpi.first.wpilibj.command.Command;
@@ -8,6 +7,15 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
+
+/**
+*
+*@author Gregory Gershanik
+*@version v1.0
+*
+*Makes the robot climb until it reaches the top.
+*/
+
 public class ClimbingCommand extends Command {
 
 	public ClimbingCommand() {
@@ -20,14 +28,17 @@ public class ClimbingCommand extends Command {
 	}
 
 	// Called repeatedly when this Command is scheduled to run
-	protected void execute() {
-		while (!ClimbingSubsystem.isTop()) { 
-			ClimbingSubsystem.setSpeed(1); //set's the speed of the motor responsible for climbing the rope until the limit switch is pressed.
-		}
+	protected void execute() 
+	{
+		ClimbingSubsystem.setSpeed(1); // set's the speed of the motor
+										// responsible for climbing the rope
+										// until the limit switch is pressed.
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
+		if (ClimbingSubsystem.isTop())
+			return true;
 		return false;
 	}
 
