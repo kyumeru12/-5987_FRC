@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class GearsSubsystem extends Subsystem {
+public class Gears extends Subsystem {
 
 	// Put methods for controlling this subsystem
 	// here. Call these from Commands.
