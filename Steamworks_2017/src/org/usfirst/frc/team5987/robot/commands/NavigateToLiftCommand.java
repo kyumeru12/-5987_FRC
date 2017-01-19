@@ -10,9 +10,9 @@ import org.usfirst.frc.team5987.robot.subsystems.GearsSubsystem;
  *@version 9000.1
  */
 //Gets the X difference from the raspberry pi and turns accordingly
-public class GearPositionFixer extends Command {
+public class NavigateToLiftCommand extends Command {
 
-    public GearPositionFixer() {
+    public NavigateToLiftCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
     }

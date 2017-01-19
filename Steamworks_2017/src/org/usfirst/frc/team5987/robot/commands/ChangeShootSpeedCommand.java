@@ -8,11 +8,11 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 /**
  *
  */
-public class SootingSpeedCommand extends Command {
+public class ChangeShootSpeedCommand extends Command {
 
 	private double speed;
 	
-    public SootingSpeedCommand(double speed) {
+    public ChangeShootSpeedCommand(double speed) {
         // Use requires() here to declare subsystem dependencies
         requires(RobotMap.shootingSubsystem);
         

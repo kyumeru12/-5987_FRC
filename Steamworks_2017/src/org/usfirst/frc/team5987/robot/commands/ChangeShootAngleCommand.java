@@ -8,7 +8,7 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 /**
  *
  */
-public class ShootingAngleCommand extends Command {
+public class ChangeShootAngleCommand extends Command {
 
 	double deltaAngle;
 	double velocity;
@@ -16,7 +16,7 @@ public class ShootingAngleCommand extends Command {
 	double minAngle;
 	double wantedAngle;
 	
-    public ShootingAngleCommand(double wantedAngle) {
+    public ChangeShootAngleCommand(double wantedAngle) {
         requires(RobotMap.shootingSubsystem);
         requires(RobotMap.networkTable);
         
@@ -55,4 +55,3 @@ public class ShootingAngleCommand extends Command {
     	end();
     }
 }
-Contact GitHub 

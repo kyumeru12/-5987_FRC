@@ -7,12 +7,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  *
  */
-public class GoToGearCommand extends Command {
+public class RotateToGearCommand extends Command {
 
 	double angleToGear;
 	boolean angleGear;
 
-	public GoToGearCommand()
+	public RotateToGearCommand()
 	{
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);

@@ -1,31 +1,29 @@
 
 package org.usfirst.frc.team5987.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
-import org.usfirst.frc.team5987.robot.Robot;
 import org.usfirst.frc.team5987.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class DriveByDistence extends Command {
+public class ChangeSpeedByLeftDistCommand extends Command {
 
 	private double distence;
-	private double maxDistence;
-	private double minDistence;
+	private double maxDistance;
+	private double minDistance;
 	
-    public DriveByDistence(double distence) {
+    public ChangeSpeedByLeftDistCommand(double distance) {
         // Use requires() here to declare subsystem dependencies
         requires(RobotMap.driveSubsystem);
 
-        this.distence = distence;
+        this.distence = distance;
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	maxDistence = 1.5;
-    	double speed = distence/maxDistence;
+    	maxDistance = 1.5;
+    	double speed = distence/maxDistance;
     	if (speed > 1)
     		speed = 1;
     	RobotMap.driveSubsystem.drive(speed,speed);
