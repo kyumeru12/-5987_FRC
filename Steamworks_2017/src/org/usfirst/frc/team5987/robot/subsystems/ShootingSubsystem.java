@@ -15,6 +15,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  *@version v1.0
  *
  *It shoot it score!!!
+ *
+ *TODO get angle and set default command
  */
 public class ShootingSubsystem extends Subsystem {
     
@@ -41,8 +43,7 @@ public class ShootingSubsystem extends Subsystem {
     }
     
     public void initDefaultCommand() {
-        // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(command);
     	
     }
     
@@ -55,17 +56,29 @@ public class ShootingSubsystem extends Subsystem {
     	return 0;
     }
     
-    public void SetSpeed(double speed) {
-    	leftShooter.set(speed);
-    	rightShooter.set(speed);
+    public void setSpeed(double speed) {
+    	setDifrentSpeed(speed,speed);
+    }
+    
+    public void setDifrentSpeed(double leftSpeed,double rightSpeed) {
+    	leftShooter.set(leftSpeed);
+    	rightShooter.set(rightSpeed);
     }
     
     public double getSpeed() {
-    	return (leftSpeed.get() + rightSpeed.get()) / 2;
+    	return (getLeftSpeed() + getRightSpeed()) / 2;
     }
     
-    public double getDelta() {
-    	return Math.abs(leftSpeed.get() + rightSpeed.get());
+    public double getLeftSpeed() {
+    	return leftSpeed.get();
+    }
+    
+    public double getRightSpeed() {
+    	return rightSpeed.get();
+    }
+    
+    public double getDeltaSpeeds() {
+    	return Math.abs(getLeftSpeed() - getRightSpeed());
     }
 }
 

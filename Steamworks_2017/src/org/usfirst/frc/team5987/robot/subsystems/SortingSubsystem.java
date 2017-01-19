@@ -2,11 +2,15 @@ package org.usfirst.frc.team5987.robot.subsystems;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
 
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
 /**
+ *@author Doron
+ *@version 1.1v
  *
+ *TODO add default command
  */
 public class SortingSubsystem extends Subsystem {
     
@@ -14,14 +18,16 @@ public class SortingSubsystem extends Subsystem {
     // here. Call these from Commands.
 
 	private Servo sortingServo;
+	public static DigitalInput gears;
 	
 	public SortingSubsystem() {
-		sortingServo = new Servo(RobotMap.SortingServoPort);
+		sortingServo = new Servo(RobotMap.sortingServoPort);
+		gears = new DigitalInput(RobotMap.isGearsPort);
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        //setDefaultCommand(new MySpecialCommand());
+        setDefaultCommand(command);
     }
     
     public void setServoPosition(double position) {
@@ -31,6 +37,10 @@ public class SortingSubsystem extends Subsystem {
     public double getServoPosition() {
     	return sortingServo.get();
     }
+    
+    public static boolean isGear() {
+		return gears.get();
+	}
     
     //Approximate will take around 1.25x10^19 years
     public void zhoo() {
@@ -59,5 +69,3 @@ public class SortingSubsystem extends Subsystem {
     	}
     }
 }
-
-Contact GitHub 

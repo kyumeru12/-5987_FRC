@@ -7,9 +7,7 @@ import org.usfirst.frc.team5987.robot.Robot;
 import org.usfirst.frc.team5987.robot.RobotMap;
 
 /**
- *@author Doron	
- *@version v1.0
- *TODO Explain
+ *
  */
 public class DriveByDistence extends Command {
 
@@ -26,7 +24,7 @@ public class DriveByDistence extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	maxDistence = 1.5; //in METERS 
+    	maxDistence = 1.5;
     	double speed = distence/maxDistence;
     	if (speed > 1)
     		speed = 1;
@@ -49,6 +47,5 @@ public class DriveByDistence extends Command {
     // Called when another command which requires one or more of the same
     // subsystems is scheduled to run
     protected void interrupted() {
-	    end();
     }
 }

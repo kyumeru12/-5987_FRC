@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
 /**
  *@author DorBrekhman
  *@version 0.1
+ *
+ *TODO add Encoders and set default command
  */
 
 public class DrivingSubsystem extends Subsystem {
@@ -18,11 +20,11 @@ public class DrivingSubsystem extends Subsystem {
 	static Victor leftFrontMotor;
 	static Victor rightRearMotor;
 	static Victor rightFrontMotor;
-	final static double SPEED_FACTOR = 0.8; // the speed is multiplied by this factor
+	final static double SPEED_FACTOR = 1; // the speed is multiplied by this factor
 	
-    public void initDefaultCommand() {
+	public DrivingSubsystem() {
     	// set ports for the victors using the preassigned values of the RobotMap
-    	leftRearMotor = new Victor(RobotMap.leftFrontMotor);
+    	leftRearMotor = new Victor(RobotMap.leftRearMotor);
     	leftFrontMotor = new Victor(RobotMap.leftFrontMotor);
     	rightRearMotor = new Victor(RobotMap.rightRearMotor);
     	rightFrontMotor = new Victor(RobotMap.rightFrontMotor);
@@ -36,16 +38,19 @@ public class DrivingSubsystem extends Subsystem {
     	// the rear motors are inverted because they are placed in the opposite direction in the robot
     	leftRearMotor.setInverted(true);
     	rightRearMotor.setInverted(true);
-    	
+	}
+	
+    public void initDefaultCommand() {
+    	setDefaultCommand(command);
     }
     
-    public static void setLeft(double speed){
+    public void setLeft(double speed){
     	speed *= SPEED_FACTOR;
     	leftRearMotor.set(speed);
     	leftFrontMotor.set(speed);
     }
     
-    public static void setRight(double speed){
+    public void setRight(double speed){
     	speed *= SPEED_FACTOR;
     	rightRearMotor.set(speed);
     	rightFrontMotor.set(speed);
@@ -56,7 +61,7 @@ public class DrivingSubsystem extends Subsystem {
      * @param speedL speed of left motors
      * @param speedR speed of right motors
      */
-    public static void drive(double speedL, double speedR){
+    public void drive(double speedL, double speedR){
     	setLeft(speedL);
     	setRight(speedR);
     }
@@ -65,7 +70,7 @@ public class DrivingSubsystem extends Subsystem {
      * turn right the robot in place
      * @param speed for turning (-1 < speed < 1)
      */
-    public static void turnRight(double speed){
+    public void turnRight(double speed){
     	setLeft(speed);
     	setRight(-speed);
     }
@@ -74,7 +79,7 @@ public class DrivingSubsystem extends Subsystem {
      * turn left the robot in place
      * @param speed for turning (-1 < speed < 1)
      */
-    public static void turnLeft(double speed){
+    public void turnLeft(double speed){
     	setLeft(-speed);
     	setRight(speed);
     }
@@ -83,7 +88,7 @@ public class DrivingSubsystem extends Subsystem {
      * move the robot forward
      * @param speed for moving (-1 < speed < 1)
      */
-    public static void forward(){
+    public void forward(){
     	setLeft(1);
     	setRight(1);
     }
@@ -92,7 +97,7 @@ public class DrivingSubsystem extends Subsystem {
      * move the robot backwards
      * @param speed for moving (-1 < speed < 1)
      */
-    public static void backwards(){
+    public void backwards(){
     	setLeft(-1);
     	setRight(-1);
     }
@@ -100,10 +105,18 @@ public class DrivingSubsystem extends Subsystem {
     /**
      * stop the robot (set the speed of all motors to 0)
      */
-    public static void stop(){
+    public void stop(){
     	setLeft(0);
     	setRight(0);
     }
+    
+    public static double getLeftEncoder() {
+    	
+    	return 0;
+    }
+    
+    public static double getRightEncoder() {
+    	
+    	return 0;
+    }
 }
-
-Contact GitHub 
