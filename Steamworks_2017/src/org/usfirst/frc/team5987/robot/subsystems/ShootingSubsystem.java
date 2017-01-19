@@ -20,7 +20,8 @@ import edu.wpi.first.wpilibj.command.Subsystem;
  */
 public class ShootingSubsystem extends Subsystem {
     
-    CANTalon shootingAngle;
+	Victor leftShootingAngle;
+	Victor rightShootingAngle;
 
     AnalogInput angle;
     
@@ -31,15 +32,16 @@ public class ShootingSubsystem extends Subsystem {
     Encoder rightSpeed;
     
     public ShootingSubsystem() {
-    	CANTalon shootingAngle = new CANTalon(RobotMap.shootingAnglePort);
+    	leftShootingAngle = new Victor(RobotMap.leftShootingAnglePort);
+    	rightShootingAngle = new Victor(RobotMap.rightShootingAnglePort);
 
-        AnalogInput angle = new AnalogInput(RobotMap.shooterAngleSensorPort);
+        angle = new AnalogInput(RobotMap.shooterAngleSensorPort);
         
-        Victor leftShooter = new Victor(RobotMap.leftShooterPort); 
-        Victor rightShooter = new Victor(RobotMap.rightShooterPort);
+        leftShooter = new Victor(RobotMap.leftShooterPort); 
+        rightShooter = new Victor(RobotMap.rightShooterPort);
         
-        Encoder leftSpeed = new Encoder(RobotMap.leftShooterChanelA,RobotMap.leftShooterChanelB,false);
-        Encoder rightSpeed = new Encoder(RobotMap.rightShooterChanelA,RobotMap.rightShooterChanelB,false);
+        leftSpeed = new Encoder(RobotMap.leftShooterChanelA,RobotMap.leftShooterChanelB,false);
+        rightSpeed = new Encoder(RobotMap.rightShooterChanelA,RobotMap.rightShooterChanelB,false);
     }
     
     public void initDefaultCommand() {
@@ -48,7 +50,8 @@ public class ShootingSubsystem extends Subsystem {
     }
     
     public void SetAngleSpeed(double speed) {
-    	shootingAngle.set(speed);
+    	leftShootingAngle.set(speed);
+    	rightShootingAngle.set(speed);
     }
     
     public double getAngle() {
