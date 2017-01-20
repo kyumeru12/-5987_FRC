@@ -1,0 +1,52 @@
+package org.usfirst.frc.team11111.robot.commands;
+
+import edu.wpi.first.wpilibj.command.CommandGroup;
+
+/**
+ *tioud
+ *@author student
+ *@version 1.0v
+ *
+ *I want to be the vary beast like no one ever was,
+ *to catch them is my real test to train them is my pass.
+ *I will travel across the land searching for a while,
+ *POKEMON to understand the power that inside!!!
+ *POKEMON;
+ *
+ *------------------------------------------------------------------------------------------
+ *
+ *	#include <stdio.h>
+ *
+ *	#define NINE 1 + 8
+ *	#define SIX 5 + 1
+ *
+ *	public int main() {
+ *
+ *		printf("the answer of %d multiply by %d equals to %d!!!\n", NINE, SIX, NINE * SIX);
+ *
+ *		return 1;
+ *	}
+ *
+ *------------------------------------------------------------------------------------------
+ *
+ *	console:
+ *	
+ *		the answer of 9 multiply by 6 equals to 42!!!
+ *
+ *------------------------------------------------------------------------------------------
+ */
+public class putGearCommand extends CommandGroup {
+    
+    public  putGearCommand() {
+    	
+    	requires(driveThingy());
+    	requires(girpusSubsystem());
+    	
+    	addParallel(new DriveToGearCommand());
+    	addSequential(new LockGearCommand(false));
+    	addSequential(new TurnClimberCommand(1));
+    	addParallel(new Command1(1/16));
+    	addSequential(new LockGearCommand(true));
+
+    }
+}
