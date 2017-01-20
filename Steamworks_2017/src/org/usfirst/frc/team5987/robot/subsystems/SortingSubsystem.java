@@ -43,13 +43,14 @@ public class SortingSubsystem extends Subsystem {
 	}
     
     //Approximate will take around 1.25x10^19 years
-    public void zhoo() {
+    public boolean zhoo() {
     	int[] toSort = new int[32];
     	for (int i = 0; i < toSort.length; i++) {
     		toSort[i] = (int) (Math.random()*toSort.length);
     	}
     	while(!isSorted(toSort))
     		suffle(toSort);
+    	return true;
     }
     
     public boolean isSorted(int[] toSort) {

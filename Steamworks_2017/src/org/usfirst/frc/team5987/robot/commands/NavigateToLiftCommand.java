@@ -1,9 +1,8 @@
 package org.usfirst.frc.team5987.robot.commands;
-import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
+import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import org.usfirst.frc.team5987.robot.subsystems.GearsSubsystem;
 
 /**
  *@author A Cool Author
@@ -25,24 +24,24 @@ public class NavigateToLiftCommand extends Command {
 	protected void execute() {
 		double speedL;
 		double speedR;
-		double Xdif = GearsSubsystem.getXdif(); //getting the distance from the edge of the camera from Python (value from 1 to -1)
-		double dist = GearsSubsystem.getDist(); //get the distance between the target and the robot
+		double Xdif = RobotMap.SDboardSubsystem.getXdifLift(); //getting the distance from the edge of the camera from Python (value from 1 to -1)
+		double dist = RobotMap.SDboardSubsystem.getDistLift(); //get the distance between the target and the robot
 		double KTurn = SmartDashboard.getNumber("K Turn",0); // a variable decided by the smartDashboard to change the angles of turning (value from 1 to 0)
-		double startingDist = GearsSubsystem.getDist();// getting the distance between the target and the robot but this one doesn't change from the moment the command started
+		double startingDist = dist;// getting the distance between the target and the robot but this one doesn't change from the moment the command started
 		
 		while(dist<0.05){
-			Xdif = GearsSubsystem.getXdif(); //updating the 'Xdif' every loop
-			dist = GearsSubsystem.getDist(); //getting the *current* distance from the target
-			KTurn = SmartDashboard.getNumber("K Turn",0); //for Debugging if the variable is changed mid-testing
+			Xdif = RobotMap.SDboardSubsystem.getXdifLift(); //updating the 'Xdif' every loop
+			dist = RobotMap.SDboardSubsystem.getDistLift(); //getting the *current* distance from the target
+			KTurn = RobotMap.SDboardSubsystem.getKTurn(); //for Debugging if the variable is changed mid-testing
 			if(!(Xdif==-9001)){
 				if(Xdif>0){// while turning left
-					speedL = (dist/startingDist)*(-Xdif)*KTurn;//    calculations for the speed of the left side wheels of the robot 
-					speedR = (dist/startingDist)*(speedL/2)*KTurn;// calculations for the speed of the right side wheels of the robot
-					DrivingSubsystem.drive(speedL, speedR); //turning the robot according to the calculations above
+					speedL = (dist / startingDist) * (-Xdif) * KTurn;//    calculations for the speed of the left side wheels of the robot 
+					speedR = (dist / startingDist) * (speedL / 2) * KTurn;// calculations for the speed of the right side wheels of the robot
+					RobotMap.drivingSubsystem.drive(speedL, speedR); //turning the robot according to the calculations above
 				}else if(Xdif<0){//while turning right
-					speedR = (dist/startingDist)*(Xdif)*KTurn;//    calculations for the speed of the right side wheels of the robot
-					speedL = (dist/startingDist)*(speedR/2)*KTurn;//calculations for the speed of the left side wheels of the robot
-					DrivingSubsystem.drive(speedL, speedR);//turning the robot according to the calculations above
+					speedR = (dist / startingDist) * (Xdif) * KTurn;//    calculations for the speed of the right side wheels of the robot
+					speedL = (dist / startingDist) * (speedR / 2) * KTurn;//calculations for the speed of the left side wheels of the robot
+					RobotMap.drivingSubsystem.drive(speedL, speedR);//turning the robot according to the calculations above
 				}
 			}
     	}

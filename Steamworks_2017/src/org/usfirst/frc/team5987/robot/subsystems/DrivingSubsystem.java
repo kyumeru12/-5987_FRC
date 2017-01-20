@@ -3,7 +3,7 @@ package org.usfirst.frc.team5987.robot.subsystems;
 import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.command.Subsystem;
-
+import org.usfirst.frc.team5987.robot.commands.*;;
 
 /**
  *@author DorBrekhman
@@ -41,7 +41,7 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(command);
+    	setDefaultCommand(new JoystickDrivingCommand());
     }
     
     public void setLeft(double speed){
@@ -67,12 +67,19 @@ public class DrivingSubsystem extends Subsystem {
     }
     
     /**
+     * turns the robot in place 
+     * @param if positive, turn right, else turns left (range of -1 to 1)
+     */
+    public void turnInPlace(double speed){
+    	setLeft(speed);
+    	setRight(-speed);
+    }
+    /**
      * turn right the robot in place
      * @param speed for turning (-1 < speed < 1)
      */
     public void turnRight(double speed){
-    	setLeft(speed);
-    	setRight(-speed);
+    	turnInPlace(speed);
     }
     
     /**
@@ -80,8 +87,7 @@ public class DrivingSubsystem extends Subsystem {
      * @param speed for turning (-1 < speed < 1)
      */
     public void turnLeft(double speed){
-    	setLeft(-speed);
-    	setRight(speed);
+    	turnInPlace(-speed);
     }
     
     /**

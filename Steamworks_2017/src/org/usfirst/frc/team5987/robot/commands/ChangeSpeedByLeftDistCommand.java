@@ -15,7 +15,7 @@ public class ChangeSpeedByLeftDistCommand extends Command {
 	
     public ChangeSpeedByLeftDistCommand(double distance) {
         // Use requires() here to declare subsystem dependencies
-        requires(RobotMap.driveSubsystem);
+        requires(RobotMap.drivingSubsystem);
 
         this.distence = distance;
     }
@@ -26,7 +26,7 @@ public class ChangeSpeedByLeftDistCommand extends Command {
     	double speed = distence/maxDistance;
     	if (speed > 1)
     		speed = 1;
-    	RobotMap.driveSubsystem.drive(speed,speed);
+    	RobotMap.drivingSubsystem.drive(speed,speed);
     }
 
     // Called repeatedly when this Command is scheduled to run

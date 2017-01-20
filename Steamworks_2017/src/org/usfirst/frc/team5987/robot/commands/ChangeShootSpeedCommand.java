@@ -21,7 +21,7 @@ public class ChangeShootSpeedCommand extends Command {
 
     // Called just before this Command runs the first time
     protected void initialize() {
-    	RobotMap.shootingSubsystem.SetSpeed(speed);
+    	RobotMap.shootingSubsystem.setSpeed(speed);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -42,4 +42,3 @@ public class ChangeShootSpeedCommand extends Command {
     protected void interrupted() {
     }
 }
-Contact GitHub 

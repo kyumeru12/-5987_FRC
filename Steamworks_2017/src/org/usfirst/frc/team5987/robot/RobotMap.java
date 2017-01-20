@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5987.robot;
 
-import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.*;
 
 import edu.wpi.first.wpilibj.DigitalSource;
 
@@ -32,11 +32,22 @@ public class RobotMap {
 	public static int isGearsPort = 5;
 	public static int climberPositionPort;
 
-	public static DrivingSubsystem driveSubsystem;
+	public static DrivingSubsystem drivingSubsystem;
+	public static ClimbingSubsystem climbingSubsystem;
+	public static GearpusSubsystem gearpusSubsystem;
+	public static ShootingSubsystem shootingSubsystem;
+	public static SortingSubsystem sortingSubsystem;
+	public static TransportSubsystem transportSubsystem;
 	
 	public RobotMap()
 	{
+		drivingSubsystem = new DrivingSubsystem();
+		climbingSubsystem = new ClimbingSubsystem();
+		gearpusSubsystem = new GearpusSubsystem();
+		shootingSubsystem = new ShootingSubsystem();
 		driveSubsystem = new DrivingSubsystem();
+		sortingSubsystem = new SortingSubsystem();
+		transportSubsystem = new TransportSubsystem();
 	}
 		
 }

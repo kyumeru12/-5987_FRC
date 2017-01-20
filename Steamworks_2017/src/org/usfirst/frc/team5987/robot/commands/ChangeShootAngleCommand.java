@@ -18,7 +18,7 @@ public class ChangeShootAngleCommand extends Command {
 	
     public ChangeShootAngleCommand(double wantedAngle) {
         requires(RobotMap.shootingSubsystem);
-        requires(RobotMap.networkTable);
+        requires(RobotMap.sdBoardSubsystem);
         
         this.wantedAngle = wantedAngle;
     }

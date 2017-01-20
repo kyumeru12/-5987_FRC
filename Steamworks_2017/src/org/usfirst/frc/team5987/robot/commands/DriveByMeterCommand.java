@@ -1,7 +1,7 @@
 package org.usfirst.frc.team5987.robot.commands;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
-
+import org.usfirst.frc.team5987.robot.commands.RotateByAngleCommand;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -10,11 +10,11 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
 public class DriveByMeterCommand extends CommandGroup {
     
     public  DriveByMeterCommand(double xDistence, double yDistence) {
-    	requires(RobotMap.driveSubsystem);
+    	requires(RobotMap.drivingSubsystem);
     	double distence = xDistence*xDistence+yDistence*yDistence;
     	while (distence > 0.1) {
-    		distence -= (RobotMap.driveSubsystem.getLeftEncoder()+RobotMap.driveSubsystem.getRightEncoder())/2;
-    		addSequential(new RotateCommand(Math.tan(yDistence/xDistence)));
+    		distence -= (RobotMap.drivingSubsystem.getLeftEncoder()+RobotMap.drivingSubsystem.getRightEncoder())/2;
+    		addSequential(new RotateByAngleCommand(Math.tan(yDistence/xDistence)));
             addSequential(new ChangeSpeedByLeftDistCommand(distence));
     	}
         
