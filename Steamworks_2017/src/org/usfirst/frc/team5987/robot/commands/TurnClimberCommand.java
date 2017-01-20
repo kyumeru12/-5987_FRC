@@ -40,8 +40,8 @@ public class TurnClimberCommand extends Command {
     		driveToAngle();
     }
     
-    public void driveToAngle() { 
-    	speed = (wantedAngle-RobotMap.gearpusSubsystem.getClimberPosition())/maxAngle;
+    public void driveToAngle() {
+    	speed = (wantedAngle - RobotMap.gearpusSubsystem.getClimberPosition()) / maxAngle;
     	if (speed > 1) speed = 1;
     	RobotMap.gearpusSubsystem.setClimberSpeed(speed);
     }

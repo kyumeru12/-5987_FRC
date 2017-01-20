@@ -24,15 +24,15 @@ public class NavigateToLiftCommand extends Command {
 	protected void execute() {
 		double speedL;
 		double speedR;
-		double Xdif = RobotMap.SDboardSubsystem.getXdifLift(); //getting the distance from the edge of the camera from Python (value from 1 to -1)
-		double dist = RobotMap.SDboardSubsystem.getDistLift(); //get the distance between the target and the robot
+		double Xdif = RobotMap.sdBoardSubsystem.getXdifLift(); //getting the distance from the edge of the camera from Python (value from 1 to -1)
+		double dist = RobotMap.sdBoardSubsystem.getDistLift(); //get the distance between the target and the robot
 		double KTurn = SmartDashboard.getNumber("K Turn",0); // a variable decided by the smartDashboard to change the angles of turning (value from 1 to 0)
 		double startingDist = dist;// getting the distance between the target and the robot but this one doesn't change from the moment the command started
 		
 		while(dist<0.05){
-			Xdif = RobotMap.SDboardSubsystem.getXdifLift(); //updating the 'Xdif' every loop
-			dist = RobotMap.SDboardSubsystem.getDistLift(); //getting the *current* distance from the target
-			KTurn = RobotMap.SDboardSubsystem.getKTurn(); //for Debugging if the variable is changed mid-testing
+			Xdif = RobotMap.sdBoardSubsystem.getXdifLift(); //updating the 'Xdif' every loop
+			dist = RobotMap.sdBoardSubsystem.getDistLift(); //getting the *current* distance from the target
+			KTurn = RobotMap.sdBoardSubsystem.getKTurn(); //for Debugging if the variable is changed mid-testing
 			if(!(Xdif==-9001)){
 				if(Xdif>0){// while turning left
 					speedL = (dist / startingDist) * (-Xdif) * KTurn;//    calculations for the speed of the left side wheels of the robot 
