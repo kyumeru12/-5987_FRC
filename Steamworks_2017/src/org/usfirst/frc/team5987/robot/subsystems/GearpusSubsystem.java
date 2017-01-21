@@ -20,7 +20,7 @@ public class GearpusSubsystem extends Subsystem {
 	private static Spark climber;
 	private static AnalogInput climberPosition;
 	private static Servo locker;
-	private static DigitalInput gearLimitSwitch = new DigitalInput(RobotMap.gearLimitSwitch);
+	
 	private static DigitalInput climbLimitSwitch = new DigitalInput(RobotMap.climbLimitSwitch);
 	
 //	public static pussy;
@@ -52,9 +52,6 @@ public class GearpusSubsystem extends Subsystem {
     	return locker.get();
     }
     
-	public static boolean isGear() {
-		return gearLimitSwitch.get();
-	}
 	
 	public static boolean isTop() {
 		return climbLimitSwitch.get();
