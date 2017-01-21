@@ -2,7 +2,6 @@ package org.usfirst.frc.team5987.robot.commands;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
 import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
-import org.usfirst.frc.team5987.robot.subsystems.Gears;
 
 import com.kauailabs.navx.frc.AHRS;
 
@@ -28,7 +27,7 @@ public class RotateByAngleCommand extends Command
 	RotateByAngleCommand(double wantedAngle) 
 	{
 		// Use requires() here to declare subsystem dependencies
-		requires(RobotMap.D0);
+		requires(RobotMap.drivingSubsystem);
 		ahrs = new AHRS(SPI.Port.kMXP);
 		this.wantedAngle = wantedAngle;
 	}
@@ -63,7 +62,7 @@ public class RotateByAngleCommand extends Command
 	// Called once after isFinished returns true
 	protected void end() 
 	{
-		
+		RobotMap.drivingSubsystem.stop();
 	}
 
 	// Called when another command which requires one or more of the same

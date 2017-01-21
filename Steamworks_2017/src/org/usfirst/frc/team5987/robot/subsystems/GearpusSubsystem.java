@@ -4,6 +4,7 @@ package org.usfirst.frc.team5987.robot.subsystems;
 import org.usfirst.frc.team5987.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.AnalogInput;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.Spark;
 import edu.wpi.first.wpilibj.command.Subsystem;
@@ -15,10 +16,13 @@ public class GearpusSubsystem extends Subsystem {
     
     // Put methods for controlling this subsystem
     // here. Call these from Commands.
-
-	private Spark climber;
-	private AnalogInput climberPosition;
-	private Servo locker;
+	private static int lockPosition = 0;
+	private static Spark climber;
+	private static AnalogInput climberPosition;
+	private static Servo locker;
+	private static DigitalInput gearLimitSwitch = new DigitalInput(RobotMap.gearLimitSwitch);
+	private static DigitalInput climbLimitSwitch = new DigitalInput(RobotMap.climbLimitSwitch);
+	
 //	public static pussy;
 	
 	public GearpusSubsystem() {
@@ -29,7 +33,6 @@ public class GearpusSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(command);
     }
     
     public void setClimberSpeed(double speed) {
@@ -48,5 +51,19 @@ public class GearpusSubsystem extends Subsystem {
     public double getLockerPosition() {
     	return locker.get();
     }
+    
+	public static boolean isGear() {
+		return gearLimitSwitch.get();
+	}
+	
+	public static boolean isTop() {
+		return climbLimitSwitch.get();
+	}
+	
+	public static boolean isGearLocked()
+	{
+		return RobotMap.gearpusSubsystem.getLockerPosition() == lockPosition; 
+				
+	}
 }
 

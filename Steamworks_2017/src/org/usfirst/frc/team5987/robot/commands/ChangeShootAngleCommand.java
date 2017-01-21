@@ -31,17 +31,15 @@ public class ChangeShootAngleCommand extends Command {
 
     // Called repeatedly when this Command is scheduled to run
     protected void execute() {
-    	deltaAngle = (RobotMap.shootingSubsystem.getAngle() - wantedAngle);//Mei-be invert
-    	velocity = deltaAngle/maxAngle;
+    	deltaAngle = (RobotMap.shootingSubsystem.getAngle() - wantedAngle); //Mei-be invert
+    	velocity = deltaAngle / maxAngle;
     	RobotMap.shootingSubsystem.SetAngleSpeed(velocity);
     	
     }
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	if (Math.abs(RobotMap.shootingSubsystem.getAngle() - wantedAngle) < minAngle)
-    		return true;
-        return false;
+    	return Math.abs(RobotMap.shootingSubsystem.getAngle() - wantedAngle) < minAngle;
     }
 
     // Called once after isFinished returns true=

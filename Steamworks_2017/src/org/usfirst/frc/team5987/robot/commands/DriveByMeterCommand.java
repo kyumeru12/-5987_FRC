@@ -9,13 +9,13 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  */
 public class DriveByMeterCommand extends CommandGroup {
     
-    public  DriveByMeterCommand(double xDistence, double yDistence) {
+    public  DriveByMeterCommand(double xDistance, double yDistance) {
     	requires(RobotMap.drivingSubsystem);
-    	double distence = xDistence*xDistence+yDistence*yDistence;
-    	while (distence > 0.1) {
-    		distence -= (RobotMap.drivingSubsystem.getLeftEncoder()+RobotMap.drivingSubsystem.getRightEncoder())/2;
-    		addSequential(new RotateByAngleCommand(Math.tan(yDistence/xDistence)));
-            addSequential(new ChangeSpeedByLeftDistCommand(distence));
+    	double distance = xDistance * xDistance + yDistance * yDistance;
+    	while (distance > 0.1) {
+    		distance -= (RobotMap.drivingSubsystem.getLeftEncoder() + RobotMap.drivingSubsystem.getRightEncoder()) / 2;
+    		addSequential(new RotateByAngleCommand(Math.tan(yDistance / xDistance)));
+            addSequential(new ChangeSpeedByLeftDistCommand(distance));
     	}
         
         //      addSequential(new Command2());

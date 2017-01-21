@@ -1,21 +1,33 @@
 package org.usfirst.frc.team5987.robot.commands;
 
+import org.usfirst.frc.team5987.robot.Robot;
 import org.usfirst.frc.team5987.robot.RobotMap;
+import org.usfirst.frc.team5987.robot.subsystems.GearpusSubsystem;
 
+import edu.wpi.first.wpilibj.Servo;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
  *
  */
-public class WaitForGearCommand extends Command {
-
-    public WaitForGearCommand() {
+public class SetGearLockerCommand extends Command {
+	public static int UNLOCK = 0;
+	public static int LOCK = 1;
+	private boolean isLocked;
+	public SetGearLockerCommand(boolean isLocked) {
         // Use requires() here to declare subsystem dependencies
-        // eg. requires(chassis);
+        // eg. requires(chassis)
+    	requires(RobotMap.gearpusSubsystem);
+    	this.isLocked = isLocked;
+    	
     }
 
     // Called just before this Command runs the first time
     protected void initialize() {
+    	if(isLocked)
+    		RobotMap.gearpusSubsystem.setLockerPosition(UNLOCK);
+    	else if (!isLocked)
+    		RobotMap.gearpusSubsystem.setLockerPosition(LOCK);
     }
 
     // Called repeatedly when this Command is scheduled to run
@@ -23,8 +35,9 @@ public class WaitForGearCommand extends Command {
     }
 
     // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	return RobotMap.gearpusSubsystem.isGear();
+    protected boolean isFinished()
+    {	 
+    	return RobotMap.gearpusSubsystem.isGearLocked();
     }
 
     // Called once after isFinished returns true

@@ -1,5 +1,7 @@
-package org.usfirst.frc.team11111.robot.commands;
+package org.usfirst.frc.team5987.robot.commands;
 
+import org.usfirst.frc.team5987.robot.RobotMap;
+import org.usfirst.frc.team5987.robot.commands.*;
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
@@ -35,18 +37,17 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  *------------------------------------------------------------------------------------------
  */
-public class putGearCommand extends CommandGroup {
+public class PutGearGroupCommand extends CommandGroup {
     
-    public  putGearCommand() {
+    public  PutGearGroupCommand() {
     	
-    	requires(driveThingy());
-    	requires(girpusSubsystem());
+    	requires(RobotMap.drivingSubsystem);
+    	requires(RobotMap.gearpusSubsystem);
     	
-    	addParallel(new DriveToGearCommand());
-    	addSequential(new LockGearCommand(false));
+    	addSequential(new SetGearLockerCommand(false));
     	addSequential(new TurnClimberCommand(1));
-    	addParallel(new Command1(1/16));
-    	addSequential(new LockGearCommand(true));
+    	addParallel(new TurnClimberCommand(1/16));
+    	addSequential(new SetGearLockerCommand(true));
 
     }
 }

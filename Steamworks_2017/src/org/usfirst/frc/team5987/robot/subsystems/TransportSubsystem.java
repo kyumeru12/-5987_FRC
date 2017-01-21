@@ -36,7 +36,6 @@ public class TransportSubsystem extends Subsystem {
 	
     public void initDefaultCommand() {
     	// set the ports for the devices with RobotMap
-    	setDefalteCommand(command);
     }
     /**
      * set the speed for the conveyor (masoa) that brings the balls to the ball elevator

@@ -1,20 +1,20 @@
 package org.usfirst.frc.team5987.robot.commands;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
-import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
+
 import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  *
  */
-public class RotateToGearCommand extends Command {
+public class AlignToGearCommand extends Command {
 
 	double angleToGear;
 	boolean angleGear;
-
-	public RotateToGearCommand()
+	private boolean isDefaultTurnRight;
+	public AlignToGearCommand(boolean isDefaultTurnRight)
 	{
+		this.isDefaultTurnRight = isDefaultTurnRight;
 		// Use requires() here to declare subsystem dependencies
 		// eg. requires(chassis);
 	}
@@ -22,16 +22,21 @@ public class RotateToGearCommand extends Command {
 	// Called just before this Command runs the first time
 	protected void initialize() 
 	{
-		angleToGear = RobotMap.sdBoardSubsystem.getXdifLift;
-		RobotMap.drivingSubsystem.turnRight(0.5f);
 
 	}
 	protected void execute()
-	{
-		if (angleToGear > 0)
+	{	
+		if (RobotMap.sdBoardSubsystem.isLiftInFieldView()){
+			angleToGear = RobotMap.sdBoardSubsystem.getXdifLift();
+			if (angleToGear > 0)
+				RobotMap.drivingSubsystem.turnRight(0.5);
+			if (angleToGear < 0)
+				RobotMap.drivingSubsystem.turnLeft(0.5);
+		}else if(isDefaultTurnRight){
 			RobotMap.drivingSubsystem.turnRight(0.5);
-		if (angleToGear < 0)
+		}else{
 			RobotMap.drivingSubsystem.turnLeft(0.5);
+		}
 	}
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() 
@@ -44,7 +49,7 @@ public class RotateToGearCommand extends Command {
 	protected void end()
 	
 	{
-		
+		RobotMap.drivingSubsystem.stop();
 	}
 
 	// Called when another command which requires one or more of the same
@@ -54,4 +59,3 @@ public class RotateToGearCommand extends Command {
 		
 	}
 }
-Contact GitHub 

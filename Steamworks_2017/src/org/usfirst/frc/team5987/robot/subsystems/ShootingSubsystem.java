@@ -2,7 +2,6 @@ package org.usfirst.frc.team5987.robot.subsystems;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
 
-import com.ctre.CANTalon;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.Encoder;
@@ -32,20 +31,19 @@ public class ShootingSubsystem extends Subsystem {
     Encoder rightSpeed;
     
     public ShootingSubsystem() {
-    	leftShootingAngle = new Victor(RobotMap.leftShootingAnglePort);
-    	rightShootingAngle = new Victor(RobotMap.rightShootingAnglePort);
+    	leftShootingAngle = new Victor(RobotMap.leftShooterPort);
+    	rightShootingAngle = new Victor(RobotMap.rightShooterPort);
 
         angle = new AnalogInput(RobotMap.shooterAngleSensorPort);
         
         leftShooter = new Victor(RobotMap.leftShooterPort); 
         rightShooter = new Victor(RobotMap.rightShooterPort);
         
-        leftSpeed = new Encoder(RobotMap.leftShooterChanelA,RobotMap.leftShooterChanelB,false);
-        rightSpeed = new Encoder(RobotMap.rightShooterChanelA,RobotMap.rightShooterChanelB,false);
+        leftSpeed = new Encoder(RobotMap.leftShooterChanelA, RobotMap.leftShooterChanelB, false);
+        rightSpeed = new Encoder(RobotMap.rightShooterChanelA, RobotMap.rightShooterChanelB, false);
     }
     
     public void initDefaultCommand() {
-        setDefaultCommand(command);
     	
     }
     
@@ -60,10 +58,10 @@ public class ShootingSubsystem extends Subsystem {
     }
     
     public void setSpeed(double speed) {
-    	setDifrentSpeed(speed,speed);
+    	setDifferentSpeed(speed,speed);
     }
     
-    public void setDifrentSpeed(double leftSpeed,double rightSpeed) {
+    public void setDifferentSpeed(double leftSpeed,double rightSpeed) {
     	leftShooter.set(leftSpeed);
     	rightShooter.set(rightSpeed);
     }

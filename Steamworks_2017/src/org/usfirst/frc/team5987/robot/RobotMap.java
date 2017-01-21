@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.DigitalSource;
  */
 public class RobotMap {
 
+	// PWM
 	public static int leftFrontMotor = 0;
 	public static int leftRearMotor = 1;
 	public static int rightRearMotor = 2;
@@ -24,28 +25,30 @@ public class RobotMap {
 	public static int climberPort = 9;
 	public static int lockerPort = 10;
 	
+	
+	//Digital And Analog 
+	
 	public static int shooterAngleSensorPort = 0;
 	public static int leftShooterChanelA = 1;
 	public static int leftShooterChanelB = 2;
 	public static int rightShooterChanelA = 3;
 	public static int rightShooterChanelB = 4;
-	public static int isGearsPort = 5;
-	public static int climberPositionPort;
-
+	public static int gearLimitSwitch = 5;
+	public static int climberPositionPort = 6;
+	public static int climbLimitSwitch = 7;
+	
 	public static DrivingSubsystem drivingSubsystem;
-	public static ClimbingSubsystem climbingSubsystem;
 	public static GearpusSubsystem gearpusSubsystem;
 	public static ShootingSubsystem shootingSubsystem;
 	public static SortingSubsystem sortingSubsystem;
 	public static TransportSubsystem transportSubsystem;
+	public static SDboardSubsystem sdBoardSubsystem;
 	
 	public RobotMap()
 	{
 		drivingSubsystem = new DrivingSubsystem();
-		climbingSubsystem = new ClimbingSubsystem();
 		gearpusSubsystem = new GearpusSubsystem();
 		shootingSubsystem = new ShootingSubsystem();
-		driveSubsystem = new DrivingSubsystem();
 		sortingSubsystem = new SortingSubsystem();
 		transportSubsystem = new TransportSubsystem();
 	}

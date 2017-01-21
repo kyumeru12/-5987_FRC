@@ -41,7 +41,7 @@ public class DrivingSubsystem extends Subsystem {
 	}
 	
     public void initDefaultCommand() {
-    	setDefaultCommand(new JoystickDrivingCommand());
+    	
     }
     
     public void setLeft(double speed){

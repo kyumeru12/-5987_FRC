@@ -22,12 +22,11 @@ public class SortingSubsystem extends Subsystem {
 	
 	public SortingSubsystem() {
 		sortingServo = new Servo(RobotMap.sortingServoPort);
-		gears = new DigitalInput(RobotMap.isGearsPort);
+		gears = new DigitalInput(RobotMap.gearLimitSwitch);
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
-        setDefaultCommand(command);
     }
     
     public void setServoPosition(double position) {
