@@ -12,6 +12,7 @@ public class WaitForGearCommand extends Command {
     public WaitForGearCommand() {
         // Use requires() here to declare subsystem dependencies
         // eg. requires(chassis);
+    	requires(RobotMap.sortingSubsystem);
     }
 
     // Called just before this Command runs the first time
@@ -24,7 +25,7 @@ public class WaitForGearCommand extends Command {
 
     // Make this return true when this Command no longer needs to run execute()
     protected boolean isFinished() {
-    	return RobotMap.gearpusSubsystem.isGear();
+    	return RobotMap.sortingSubsystem.isGear();
     }
 
     // Called once after isFinished returns true

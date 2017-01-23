@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5987.robot.commands;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
-import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
 
 import com.kauailabs.navx.frc.AHRS;
 
