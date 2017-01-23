@@ -37,20 +37,14 @@ public class RobotMap {
 	public static int climberPositionPort = 6;
 	public static int climbLimitSwitch = 7;
 	
-	public static DrivingSubsystem drivingSubsystem;
-	public static GearpusSubsystem gearpusSubsystem;
-	public static ShootingSubsystem shootingSubsystem;
-	public static SortingSubsystem sortingSubsystem;
-	public static TransportSubsystem transportSubsystem;
-	public static SDboardSubsystem sdBoardSubsystem;
+	public static DrivingSubsystem drivingSubsystem = new DrivingSubsystem();
+	public static GearpusSubsystem gearpusSubsystem = new GearpusSubsystem();
+	public static ShootingSubsystem shootingSubsystem = new ShootingSubsystem();
+	public static SortingSubsystem sortingSubsystem = new SortingSubsystem();
+	public static TransportSubsystem transportSubsystem = new TransportSubsystem();
+	public static SDboardSubsystem sdBoardSubsystem = new SDboardSubsystem();
 	
-	public RobotMap()
-	{
-		drivingSubsystem = new DrivingSubsystem();
-		gearpusSubsystem = new GearpusSubsystem();
-		shootingSubsystem = new ShootingSubsystem();
-		sortingSubsystem = new SortingSubsystem();
-		transportSubsystem = new TransportSubsystem();
-	}
+		
+	
 		
 }
