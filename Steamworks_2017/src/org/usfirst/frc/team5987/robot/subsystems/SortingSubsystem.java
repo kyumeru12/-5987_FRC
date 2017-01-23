@@ -22,14 +22,16 @@ public class SortingSubsystem extends Subsystem {
 	
 	public SortingSubsystem() {
 		sortingServo = new Servo(RobotMap.sortingServoPort);
-		gears = new DigitalInput(RobotMap.gearLimitSwitch);
+		gears = new DigitalInput(RobotMap.isGearsPort);
 	}
 	
     public void initDefaultCommand() {
         // Set the default command for a subsystem here.
+        //setDefaultCommand(command);
     }
     
     public void setServoPosition(double position) {
+
     	sortingServo.set(position);
     }
     
@@ -37,10 +39,10 @@ public class SortingSubsystem extends Subsystem {
     	return sortingServo.get();
     }
     
-    public static boolean isGear() {
-		return gears.get();
+    public boolean isGear() {
+		return !gears.get();
 	}
-    
+    	
     //Approximate will take around 1.25x10^19 years
     public boolean zhoo() {
     	int[] toSort = new int[32];

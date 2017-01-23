@@ -21,7 +21,7 @@ public class Robot extends IterativeRobot {
 
 	public static final ExampleSubsystem exampleSubsystem = new ExampleSubsystem();
 	public static OI oi;
-	public static RobotMAp rm;
+	public static RobotMap rm;
 
     Command autonomousCommand;
     SendableChooser chooser;
