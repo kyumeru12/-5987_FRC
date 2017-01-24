@@ -5,8 +5,8 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *@author ariel
- *@version 1.0
+ *@author ariel && Doron
+ *@version 1.1
  *This command responsible on the distinguishing between gears and balls
  */
 public class SortingCommand extends Command {
