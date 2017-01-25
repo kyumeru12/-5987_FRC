@@ -37,7 +37,9 @@ import edu.wpi.first.wpilibj.command.CommandGroup;
  *
  *------------------------------------------------------------------------------------------
  *
- *
+ *This Command group is responsible on the action of putting gears on the lift.
+ *@Command SetGearLockerCommand is the command for controling the lower servo
+ *@Command TurnClimberCommand is command for controling the the CLimber motors and  the potentiometer, the command receives angle in tau (2PI=TAU)  
  */
 public class PutGearGroupCommand extends CommandGroup {
     
