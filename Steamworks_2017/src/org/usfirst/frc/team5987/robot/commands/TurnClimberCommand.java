@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team5987.robot.commands;
+package org.usfirst.frc.team5987.robot.subsystems;
 
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
