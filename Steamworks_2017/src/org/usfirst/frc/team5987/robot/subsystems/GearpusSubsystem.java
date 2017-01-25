@@ -40,31 +40,48 @@ public class GearpusSubsystem extends Subsystem {
 	public void initDefaultCommand() {
 		// Set the default command for a subsystem here.
 	}
-
+	/**
+	*@parmeters speed the wanted speed for the motor
+	*the functions set the speed for the climber motors
+	*/
 	public void setClimberSpeed(double speed) {
 		climberLeft.set(speed);
 		climberRight.set(speed);
 
 	}
-
+	/**
+	*@return This function returns the current angle of the climber in tau (2PI = TAU)
+	*TODO move the smartdashboard to SD subsystem
+	*/
 	public double getClimberPosition() {
 		SmartDashboard.putNumber("Pontialmeter", climberPosition.getValue());
 		SmartDashboard.putNumber("Tau", ((((4052.0 / 4055.0) * climberPosition.getValue())) % 405.2)/405.2);
 		return (((4052.0 / 4055.0) * climberPosition.getValue()) % 405.2)/405.2;
 	}
 
+	
+	/*
+	*@parameters position set position to the servo   
+	*/
 	public void setLockerPosition(double position) {
 		locker.set(position);
 	}
-
+	
+	/**
+	*this function get the current from the servo
+	*/
 	public double getLockerPosition() {
 		return locker.get();
 	}
-
+	/**
+	*@return this function returns the current state of the limit switch 
+	*/
 	public static boolean isTop() {
 		return !climbLimitSwitch.get();
 	}
-
+	/**
+	*@return this function returns if the current state of the limit switch is locked
+ 	*/
 	public static boolean isGearLocked() {
 		return RobotMap.gearpusSubsystem.getLockerPosition() == lockPosition;
 
