@@ -38,13 +38,11 @@ public class TurnClimberCommand extends Command {
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
-		
-
-
 		if (wantedAngle < 0.0)
 			RobotMap.gearpusSubsystem.setClimberSpeed(-1.0);
 		else
 			driveToAngle();
+		Timer.delay(0.05);
 	}
 
 	public void driveToAngle() {
