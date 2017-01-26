@@ -186,6 +186,7 @@ public class Driveing4DaWinCommand extends Command {
 	protected void execute() {
 		update();
 		setSpeed();
+		Timer.delay(0.05);
 	}
 
 	// Make this return true when this Command no longer needs to run execute()
