@@ -7,7 +7,7 @@ import edu.wpi.first.wpilibj.command.Command;
 /**
  *
  */
-public class AlignToGearCommand extends Command {
+public class rotateByPixel extends Command {
 
 	double angleToGear;
 	boolean angleGear;
