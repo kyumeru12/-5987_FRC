@@ -4,7 +4,7 @@ from streamer import main as streamer
 import sys
 
 
-class DataHolder: pass
+class DataHolder: pass  # a class for sharing data between threads 
 
 streaming_start = False
 if len(sys.argv) > 1:
