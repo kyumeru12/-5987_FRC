@@ -36,8 +36,7 @@ public class DrivingSubsystem extends Subsystem {
     	rightFrontMotor.setExpiration(0.05);
     	
     	// the rear motors are inverted because they are placed in the opposite direction in the robot
-    	leftRearMotor.setInverted(true);
-    	rightRearMotor.setInverted(true);
+    	
 	}
 	
     public void initDefaultCommand() {

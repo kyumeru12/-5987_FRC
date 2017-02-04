@@ -5,14 +5,14 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *TODO test
  */
 public class rotateByPixel extends Command {
 
 	double angleToGear;
 	boolean angleGear;
 	private boolean isDefaultTurnRight;
-	public AlignToGearCommand(boolean isDefaultTurnRight)
+	public rotateByPixel(boolean isDefaultTurnRight)
 	{
 		this.isDefaultTurnRight = isDefaultTurnRight;
 		// Use requires() here to declare subsystem dependencies

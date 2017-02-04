@@ -12,6 +12,7 @@ import edu.wpi.first.wpilibj.command.Command;
  * @version 0.1v alpha
  * 
  *          driving toward a point smoothly (One Command to rule them all )
+ *  TODO test,update params
  */
 public class Driveing4DaWinCommand extends Command {
 
@@ -143,7 +144,7 @@ public class Driveing4DaWinCommand extends Command {
 	public void setSpeed() {
     	double rightSpeed = lim(straightSpeed() + angleSpeed());
     	double leftSpeed = lim(straightSpeed() - angleSpeed());
-    	RobotMap.drivingSubsystem.drive(rightSpeed,leftSpeed)
+    	RobotMap.drivingSubsystem.drive(rightSpeed,leftSpeed);
     }
 
 	/**

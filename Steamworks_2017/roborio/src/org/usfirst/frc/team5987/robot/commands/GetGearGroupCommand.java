@@ -14,7 +14,7 @@ public class GetGearGroupCommand extends CommandGroup {
     	
     	addParallel(new SetGearLockerCommand(true));
     	addSequential(new TurnClimberCommand(45));
-    	addSequential(new SignalHumanPlayerCommand());
+    	//addSequential(new SignalHumanPlayerCommand());
     	addSequential(new WaitForGearCommand());
     	addSequential(new TurnClimberCommand(90));
     }

@@ -15,6 +15,7 @@ import edu.wpi.first.wpilibj.command.Command;
 *@version v1.0
 *
 *The class makes the robot turn to the angle needed.
+*TODO test
 */
 
 public class RotateByAngleCommand extends Command 

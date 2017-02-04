@@ -8,31 +8,32 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Doron
+ *TODO Check default rpm,test Command
  */
-public class ChangeShootSpeedCommand extends Command {
+public class ChangeShootSpeedByRPMCommand extends Command {
 
-	private double speed;
+	private double RPM;
 
-	public ChangeShootSpeedCommand(double speed) {
+	public ChangeShootSpeedByRPMCommand(double RPM) {
 		// Use requires() here to declare subsystem dependencies
 		requires(RobotMap.shootingSubsystem);
 
-		this.speed = speed;
+		this.RPM = RPM;
 	}
 
 	// Called just before this Command runs the first time
 	protected void initialize() {
-		RobotMap.shootingSubsystem.setSpeed(speed);
+		RobotMap.shootingSubsystem.setSpeed(1);
 	}
 
 	// Called repeatedly when this Command is scheduled to run
 	protected void execute() {
 		
 		
-		if (RobotMap.shootingSubsystem.getLeftSpeed() > RobotMap.shootingSubsystem.getRightSpeed()) {
+		if (RobotMap.shootingSubsystem.getLeftSpeed() > RPM) {
 			RobotMap.shootingSubsystem.setLeftSpeed(RobotMap.shootingSubsystem.getLeftPWMSpeed() - 0.01);
 
-		} else if (RobotMap.shootingSubsystem.getLeftSpeed() < RobotMap.shootingSubsystem.getRightSpeed()) {
+		} else if (RobotMap.shootingSubsystem.getRightSpeed() > RPM) {
 			RobotMap.shootingSubsystem.setRightSpeed(RobotMap.shootingSubsystem.getRightPWMSpeed() - 0.01);
 
 		}
@@ -41,13 +42,8 @@ public class ChangeShootSpeedCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (RobotMap.shootingSubsystem.getDeltaSpeeds() < 50) {
+		if (RobotMap.shootingSubsystem.getRightSpeed() <= RPM && RobotMap.shootingSubsystem.getLeftSpeed() <= RPM)
 			return true;
-		}
-		if (RobotMap.shootingSubsystem.getRightPWMSpeed() < 0 || RobotMap.shootingSubsystem.getLeftPWMSpeed() > 0) {
-			RobotMap.shootingSubsystem.setSpeed(0);
-			return true;
-		}
 		return false;
 	}
 

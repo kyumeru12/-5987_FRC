@@ -31,7 +31,7 @@ public class GearpusSubsystem extends Subsystem {
 		climberLeft = new Victor(RobotMap.climberLPort);
 		climberRight = new Victor(RobotMap.climberRPort);
 
-		climberRight.setInverted(true);
+		
 
 		climberPosition = new AnalogInput(RobotMap.climberPositionPort);
 		locker = new Servo(RobotMap.lockerPort);

@@ -5,7 +5,7 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
- *
+ *TODO updtae params
  */
 public class ChangeShootAngleCommand extends Command {
 
@@ -14,41 +14,53 @@ public class ChangeShootAngleCommand extends Command {
 	double maxAngle;
 	double minAngle;
 	double wantedAngle;
-	
-    public ChangeShootAngleCommand(double wantedAngle) {
-        requires(RobotMap.shootingSubsystem);
-        requires(RobotMap.sdBoardSubsystem);
-        
-        this.wantedAngle = wantedAngle;
-    }
+	boolean set;
 
-    // Called just before this Command runs the first time
-    protected void initialize() {
-    	maxAngle = 10;
-    	minAngle = 1;
-    }
+	public ChangeShootAngleCommand(double wantedAngle, boolean set) {
+		requires(RobotMap.shootingSubsystem);
+		requires(RobotMap.sdBoardSubsystem);
 
-    // Called repeatedly when this Command is scheduled to run
-    protected void execute() {
-    	deltaAngle = (RobotMap.shootingSubsystem.getAngle() - wantedAngle); //Mei-be invert
-    	velocity = deltaAngle / maxAngle;
-    	RobotMap.shootingSubsystem.SetAngleSpeed(velocity);
-    	
-    }
+		this.wantedAngle = wantedAngle;
+		this.set = set;
+	}
 
-    // Make this return true when this Command no longer needs to run execute()
-    protected boolean isFinished() {
-    	return Math.abs(RobotMap.shootingSubsystem.getAngle() - wantedAngle) < minAngle;
-    }
+	// Called just before this Command runs the first time
+	protected void initialize() {
+		maxAngle = 10.0/360;
+		minAngle = 1.0/360;
+		deltaAngle = (RobotMap.shootingSubsystem.getAngle() - wantedAngle);
+		RobotMap.shootingSubsystem.SetAngleSpeed(deltaAngle / maxAngle);
+		deltaAngle = (RobotMap.shootingSubsystem.getAngle() - wantedAngle);
+	}
 
-    // Called once after isFinished returns true=
-    protected void end() {
-    	RobotMap.shootingSubsystem.SetAngleSpeed(0);
-    }
+	// Called repeatedly when this Command is scheduled to run
+	protected void execute() {
+		double currentAngle =RobotMap.shootingSubsystem.getAngle();
+		if (!set) {
+			deltaAngle = (currentAngle - wantedAngle); // Mei-										// invert
+			velocity = deltaAngle / maxAngle;
+			RobotMap.shootingSubsystem.SetAngleSpeed(velocity);
+			deltaAngle = (currentAngle - wantedAngle);
+		}
+	}
 
-    // Called when another command which requires one or more of the same
-    // subsystems is scheduled to run
-    protected void interrupted() {
-    	end();
-    }
+	// Make this return true when this Command no longer needs to run execute()
+	protected boolean isFinished() {
+		if (set || Math.abs(RobotMap.shootingSubsystem.getAngle() - wantedAngle) < minAngle) {
+			return true;
+		}
+		return false;
+	}
+
+	// Called once after isFinished returns true=
+	protected void end() {
+		if (!set)
+			RobotMap.shootingSubsystem.SetAngleSpeed(0);
+	}
+
+	// Called when another command which requires one or more of the same
+	// subsystems is scheduled to run
+	protected void interrupted() {
+		end();
+	}
 }

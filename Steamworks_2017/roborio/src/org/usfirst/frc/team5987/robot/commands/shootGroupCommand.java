@@ -1,23 +1,15 @@
 package org.usfirst.frc.team5987.robot.commands;
 
-import org.usfirst.frc.team5987.robot.RobotMap;
-
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
- *
+ *TODO make the command
  */
-public class DriveByMeterCommand extends CommandGroup {
+public class shootGroupCommand extends CommandGroup {
     
-    public  DriveByMeterCommand(double xDistance, double yDistance) {
-    	requires(RobotMap.drivingSubsystem);
-    	double distance = xDistance * xDistance + yDistance * yDistance;
-    	while (distance > 0.1) {
-    		distance -= (RobotMap.drivingSubsystem.getLeftEncoder() + RobotMap.drivingSubsystem.getRightEncoder()) / 2;
-    		addSequential(new RotateByAngleCommand(Math.tan(yDistance / xDistance)));
-            addSequential(new ChangeSpeedByLeftDistCommand(distance));
-    	}
-        
+    public  shootGroupCommand() {
+        // Add Commands here:
+        // e.g. addSequential(new Command1());
         //      addSequential(new Command2());
         // these will run in order.
 

@@ -25,21 +25,21 @@ public class AutoBasicGroupCommand extends CommandGroup {
     	
     	requires(RobotMap.drivingSubsystem);
     	requires(RobotMap.gearpusSubsystem);
-    	requires(RobotMap.transportSubsystem);
-    	requires(RobotMap.smartDashboardSubsystem);
+    	requires(RobotMap.transportingSubsystem);
+    	requires(RobotMap.sdBoardSubsystem);
     	requires(RobotMap.shootingSubsystem);
     	
-        addSequential(new DriveByMeterCommand(initX,initY));
+        addSequential(new Driveing4DaWinCommand(initX,initY));
         
         if (isGear) {
-        	addSequential(new NavigateToGearCommand());
-        	addSequential(new PutGearCommandCommand());
+        	addSequential(new NavigateToLiftCommand());
+        	addSequential(new PutGearGroupCommand());
         }
         
-        addSequential(new DriveByMeterCommand(shootingX,shootingY));
+        addSequential(new Driveing4DaWinCommand(shootingX,shootingY));
         
         while (isShoot) {
-        	addSequential(new shootCommand());
+        	addSequential(new shootGroupCommand());
         }
     }
     

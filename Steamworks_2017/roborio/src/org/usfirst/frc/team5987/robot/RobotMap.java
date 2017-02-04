@@ -1,11 +1,15 @@
 package org.usfirst.frc.team5987.robot;
 
+import org.usfirst.frc.team5987.robot.NAVX.Navx;
+import org.usfirst.frc.team5987.robot.NAVX.Navx.PinType;
 import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
 import org.usfirst.frc.team5987.robot.subsystems.GearpusSubsystem;
 import org.usfirst.frc.team5987.robot.subsystems.SDboardSubsystem;
 import org.usfirst.frc.team5987.robot.subsystems.ShootingSubsystem;
 import org.usfirst.frc.team5987.robot.subsystems.SortingSubsystem;
 import org.usfirst.frc.team5987.robot.subsystems.TransportSubsystem;
+
+import edu.wpi.first.wpilibj.SPI;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into
@@ -15,19 +19,25 @@ import org.usfirst.frc.team5987.robot.subsystems.TransportSubsystem;
  */
 public class RobotMap {
 
+	public static Navx navx = new Navx(SPI.Port.kMXP);
+	
 	// PWM
 	public static int leftFrontMotor = 0;
 	public static int leftRearMotor = 1;
 	public static int rightRearMotor = 2;
 	public static int rightFrontMotor = 3;
-	public static int shootingAnglePort = 4;
-	public static int leftShooterPort = 5;
-	public static int rightShooterPort = 6;
-	public static int sortingServoPort = 7;
-	public static int carrierMotor = 8;
-	public static int climberLPort=9;
-	public static int climberRPort=10;
-	public static int lockerPort = 11;
+	public static int shootingLeftAnglePort = 4;
+	public static int shootingRightAnglePort = 5;
+	public static int leftShooterPort = 6;
+	public static int rightShooterPort = 7;
+	public static int sortingServoPort = 8;
+	public static int carrierMotor = 9;
+	
+	//NAVX PWM
+	
+	public static int climberLPort= navx.getChannelFromPin(PinType.PWM, 0);
+	public static int climberRPort=navx.getChannelFromPin(PinType.PWM, 1);
+	public static int lockerPort = navx.getChannelFromPin(PinType.PWM, 2);
 	
 	
 	//Digital And Analog 
