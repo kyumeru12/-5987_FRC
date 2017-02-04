@@ -8,6 +8,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
  * @author Doron
+ * 
+ * set the shooters' speed equals to one another
  */
 public class ChangeShootSpeedCommand extends Command {
 

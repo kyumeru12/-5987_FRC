@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 /**
  * @author Doron
  *TODO Check default rpm,test Command
+ *
+ *like the command below but with constant speed
  */
 public class ChangeShootSpeedByRPMCommand extends Command {
 

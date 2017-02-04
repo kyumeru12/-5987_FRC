@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
  *@author A Cool Author
  *@version 9000.1
  *TODO test
+ *
+ *navigating to the LIFT!!!
  */
 //Gets the X difference from the raspberry pi and turns accordingly
 public class NavigateToLiftCommand extends Command {

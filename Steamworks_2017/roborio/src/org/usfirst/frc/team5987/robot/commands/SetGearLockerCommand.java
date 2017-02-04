@@ -6,7 +6,8 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /**
- *
+ *@author Tzvi 
+ *this command will open or close the locker servo
  */
 public class SetGearLockerCommand extends Command {
 	public static int UNLOCK = 0;

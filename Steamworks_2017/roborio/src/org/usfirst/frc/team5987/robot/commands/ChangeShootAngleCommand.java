@@ -5,7 +5,12 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 import edu.wpi.first.wpilibj.command.Command;
 
 /**
+ *@author Doron
+ *@version 1.0
+ *
  *TODO updtae params
+ *
+ *set the shooters' angle
  */
 public class ChangeShootAngleCommand extends Command {
 

@@ -56,6 +56,11 @@ public class SDboardSubsystem extends Subsystem {
 		return isGear;
 	}
 	
+	public static double getShootingAngle()
+	{
+		double angle = SmartDashboard.getDouble("Shooting angle.",0);
+		return angle;
+	}
 	public static boolean isBoilerInFieldView() {
 		boolean isGear = SmartDashboard.getBoolean("Boiler In Field View", false);
 		return isGear;

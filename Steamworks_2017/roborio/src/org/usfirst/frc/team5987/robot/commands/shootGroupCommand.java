@@ -1,8 +1,11 @@
 package org.usfirst.frc.team5987.robot.commands;
 
+import org.usfirst.frc.team5987.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.command.CommandGroup;
 
 /**
+ *@author Doron
  *TODO make the command
  */
 public class shootGroupCommand extends CommandGroup {
@@ -24,5 +27,11 @@ public class shootGroupCommand extends CommandGroup {
         // e.g. if Command1 requires chassis, and Command2 requires arm,
         // a CommandGroup containing them would require both the chassis and the
         // arm.
+    	final double kPWM = 755 ;
+    	
+    	addParallel(new rotateByPixel());
+    	addParallel(new ChangeShootSpeedByRPMCommand(kPWM));
+    	addSequential(new ChangeShootAngleCommand(RobotMap.sdBoardSubsystem.getShootingAngle(), false));
+    	addSequential(new TransportingBallCommand(1));
     }
 }

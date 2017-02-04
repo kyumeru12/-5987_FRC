@@ -4,7 +4,11 @@ import org.usfirst.frc.team5987.robot.RobotMap;
 
 import edu.wpi.first.wpilibj.command.CommandGroup;
 /**
+ *@author doron
  *
+ *isnt it ovaise... (this command get the Gear...)
+ *
+ *TODO add drive to lift
  */
 public class GetGearGroupCommand extends CommandGroup {
     
