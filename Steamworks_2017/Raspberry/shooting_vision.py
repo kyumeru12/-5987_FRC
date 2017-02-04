@@ -41,7 +41,7 @@ class ShootingVision:
             hsv_vals = pickle.load(data)["D"]
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
             v1 = 55
-            v2 = 225
+            v2 = 255
             hsv_vals = [(h1, s1, v1), (h2, s2, v2)]
             return hsv_vals
 
