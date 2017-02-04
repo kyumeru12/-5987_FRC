@@ -1,10 +1,11 @@
 
 package org.usfirst.frc.team5987.robot.commands;
 
-import edu.wpi.first.wpilibj.command.Command;
-
 import org.usfirst.frc.team5987.robot.Robot;
 import org.usfirst.frc.team5987.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.command.Command;
 
 /**
  * @author Doron
@@ -140,8 +141,8 @@ public class Driveing4DaWinCommand extends Command {
 	 * set the motor speed based on his distance and his angle
 	 */
 	public void setSpeed() {
-    	double rightSpeed = lim(strightSpeed() + angleSpeed());
-    	double leftSpeed = lim(strightSpeed() - angleSpeed());
+    	double rightSpeed = lim(straightSpeed() + angleSpeed());
+    	double leftSpeed = lim(straightSpeed() - angleSpeed());
     	RobotMap.drivingSubsystem.drive(rightSpeed,leftSpeed)
     }
 
@@ -191,7 +192,7 @@ public class Driveing4DaWinCommand extends Command {
 
 	// Make this return true when this Command no longer needs to run execute()
 	protected boolean isFinished() {
-		if (straightSpeed() + angleSpeed() < minSpeed && strightSpeed() - angleSpeed() < minSpeed) //if speed is low meaning we reached the target
+		if (straightSpeed() + angleSpeed() < minSpeed && straightSpeed() - angleSpeed() < minSpeed) //if speed is low meaning we reached the target
 			return true;
 		return false;
 	}

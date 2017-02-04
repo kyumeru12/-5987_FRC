@@ -1,9 +1,9 @@
 package org.usfirst.frc.team5987.robot.subsystems;
 
 import org.usfirst.frc.team5987.robot.RobotMap;
+
 import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import org.usfirst.frc.team5987.robot.commands.*;;
+import edu.wpi.first.wpilibj.command.Subsystem;;
 
 /**
  *@author DorBrekhman

@@ -1,8 +1,11 @@
 package org.usfirst.frc.team5987.robot;
 
-import org.usfirst.frc.team5987.robot.subsystems.*;
-
-import edu.wpi.first.wpilibj.DigitalSource;
+import org.usfirst.frc.team5987.robot.subsystems.DrivingSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.GearpusSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.SDboardSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.ShootingSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.SortingSubsystem;
+import org.usfirst.frc.team5987.robot.subsystems.TransportSubsystem;
 
 /**
  * The RobotMap is a mapping from the ports sensors and actuators are wired into

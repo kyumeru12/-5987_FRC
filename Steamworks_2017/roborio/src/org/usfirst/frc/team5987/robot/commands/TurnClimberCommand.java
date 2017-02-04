@@ -1,11 +1,11 @@
 
-package org.usfirst.frc.team5987.robot.subsystems;
+package org.usfirst.frc.team5987.robot.commands;
 
+import org.usfirst.frc.team5987.robot.RobotMap;
+
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
-import org.usfirst.frc.team5987.robot.Robot;
-import org.usfirst.frc.team5987.robot.RobotMap;
 
 /**
  * @author Doron
