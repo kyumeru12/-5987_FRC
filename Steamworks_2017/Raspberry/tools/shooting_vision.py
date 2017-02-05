@@ -1,11 +1,11 @@
 from __future__ import division, print_function
 import cvs
 import pickle
-from calcs import px2angle, px2dist, dist2horizontal
-from params import TARGET_ASPECT_RATIO, RESIZE_FACTOR
+from misc.calcs import px2angle, px2dist, dist2horizontal
+from misc.params import TARGET_ASPECT_RATIO, RESIZE_FACTOR
 import cv2
-from a_cool_networktable import SmartDashboard
-from stabilizer import Stabilizer
+from misc.a_cool_networktable import SmartDashboard
+from misc.stabilizer import Stabilizer
 
 
 class ShootingVision:
@@ -30,7 +30,7 @@ class ShootingVision:
             else:
                 frame.println("No Target Found")
                 self.SDboard["I've Got You In My Sight (bolier)"] = False  # soldier76 doesn't have ult yet (target is not in sight)
-            self.data_holder.shooting_frame = frame
+            self.data_holder.frame = frame
             frame.show("frame")
             filtered.show("filtered")
             cvs.pressed_key() # must have delay

@@ -12,15 +12,12 @@ if len(sys.argv) > 1:
     if sys.argv[1] in ("-s", "--streaming"):
         streaming_start = false
 data_holder = DataHolder()
-data_holder.data = None
 
 
-vision = Thread(target=ShootingVision, args=(data_holder, ))
+shooting_vision = Thread(target=ShootingVision, args=(data_holder, ))
 if streaming_start:
     streaming = Thread(target=streamer, args=(data_holder, ))
-GearsAngle = Thread(target=GearsAngle, args=(data_holder, ))
 
-GearsAngle.start()
-#vision.start()
+shooting_vision.start()
 if streaming_start:
     streaming.start()

@@ -2,10 +2,10 @@ import cvs
 import cv2
 import pickle
 from math import sin, cos, acos, sqrt, degrees, radians
-from params import RESIZE_FACTOR
-from calcs import px2dist
-from a_cool_networktable import SmartDashboard
-from stabilizer import Stabilizer
+from misc.params import RESIZE_FACTOR
+from misc.calcs import px2dist
+from misc.a_cool_networktable import SmartDashboard
+from misc.stabilizer import Stabilizer
 
 #@author Tzvi
 
@@ -26,6 +26,7 @@ class GearsAngle:
             targets = self.find_target(filtered.contours())
             draw_data, network_data = self.extract_data(targets)
             self.publish_data(frame, draw_data, network_data)
+            self.data_holder.frame = frame
             frame.show("Frame")
             filtered.show("Filtered")
             cvs.pressed_key()
