@@ -1,3 +1,4 @@
+import os
 import cvs
 import cv2
 import pickle
@@ -11,7 +12,8 @@ from misc.stabilizer import Stabilizer
 
 class GearsAngle:
 
-    def __init__(self, data_holder):
+    def __init__(self, data_holder, display):
+        self.display = display
         self.data_holder = data_holder
         self.hsv_vals = self.get_hsv_range()
         print self.hsv_vals
@@ -27,8 +29,9 @@ class GearsAngle:
             draw_data, network_data = self.extract_data(targets)
             self.publish_data(frame, draw_data, network_data)
             self.data_holder.frame = frame
-            frame.show("Frame")
-            filtered.show("Filtered")
+            if self.display:
+                frame.show("Frame")
+                filtered.show("Filtered")
             cvs.pressed_key()
 
     def find_target(self, contours):
@@ -76,7 +79,10 @@ class GearsAngle:
 
     @staticmethod
     def get_hsv_range():
-        with open('hsv_values.pickle', 'rb') as data:
+        script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
+        rel_path = "misc/hsv_values.pickle"
+        abs_file_path = os.path.join(script_dir, rel_path)
+        with open(abs_file_path, 'rb') as data:
             hsv_vals = pickle.load(data)["D"]
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
             v1 = 55

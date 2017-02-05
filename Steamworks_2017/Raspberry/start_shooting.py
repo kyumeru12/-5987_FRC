@@ -1,20 +1,25 @@
 from threading import Thread
-from shooting_vision import ShootingVision
-from streamer import main as streamer
-from gears_angle import GearsAngle
+from tools.shooting_vision import ShootingVision
+from tools.streamer import main as streamer
 import sys
 
 
-class DataHolder: pass  # a class for sharing data between threads 
+class DataHolder: pass  # a class for sharing data between threads
+
 false = False
-streaming_start = False
-if len(sys.argv) > 1:
-    if sys.argv[1] in ("-s", "--streaming"):
-        streaming_start = false
+true = True
+streaming_start = false
+display = true
+
+args = "".join(sys.argv)
+if "-s" in args or "--streaming" in args:
+    streaming_start = true
+if "-nd" in args or "--NoDisplay" in args:
+    display = false
 data_holder = DataHolder()
 
 
-shooting_vision = Thread(target=ShootingVision, args=(data_holder, ))
+shooting_vision = Thread(target=ShootingVision, args=(data_holder, display ))
 if streaming_start:
     streaming = Thread(target=streamer, args=(data_holder, ))
 
