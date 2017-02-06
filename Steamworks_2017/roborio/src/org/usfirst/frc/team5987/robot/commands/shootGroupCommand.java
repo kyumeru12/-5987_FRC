@@ -29,7 +29,7 @@ public class shootGroupCommand extends CommandGroup {
         // arm.
     	final double kPWM = 755 ;
     	
-    	addParallel(new rotateByPixel());
+    	addParallel(new rotateByPixel(false));
     	addParallel(new ChangeShootSpeedByRPMCommand(kPWM));
     	addSequential(new ChangeShootAngleCommand(RobotMap.sdBoardSubsystem.getShootingAngle(), false));
     	addSequential(new TransportingBallCommand(1));

@@ -34,6 +34,9 @@ public class SDboardSubsystem extends Subsystem {
 								// robot) and the lift marks on the field
 		return getDouble("Gears X Difference"); // ACoolName was here
 	}
+	public double getXdifBoiler(){
+		return getDouble("Boiler X Difference");
+	}
 
 	public static void setLeftSpeed(double speed) {
 		SmartDashboard.putNumber("Left Side Wheels", speed);
