@@ -1,20 +1,22 @@
 from __future__ import division, print_function
+import os
 import cvs
 import pickle
-from calcs import px2angle, px2dist, dist2horizontal
-from params import TARGET_ASPECT_RATIO, RESIZE_FACTOR
+from misc.calcs import px2angle, px2dist, dist2horizontal
+from misc.params import TARGET_ASPECT_RATIO, RESIZE_FACTOR
 import cv2
-from a_cool_networktable import SmartDashboard
-from stabilizer import Stabilizer
+from misc.a_cool_networktable import SmartDashboard
+from misc.stabilizer import Stabilizer
 
 
 class ShootingVision:
 
-    def __init__(self, data_holder):
+    def __init__(self, data_holder, display ):
         self.SDboard = SmartDashboard()
         self.data_holder = data_holder
         self.hsv_vals = self.get_hsv_range()
         self.distance_stabilizer = Stabilizer(7)
+        self.display = display
         cam = cvs.UsbCam()
         while True:
             frame = cam.read().resize(RESIZE_FACTOR)  # read a frame and resize it
@@ -30,18 +32,22 @@ class ShootingVision:
             else:
                 frame.println("No Target Found")
                 self.SDboard["I've Got You In My Sight (bolier)"] = False  # soldier76 doesn't have ult yet (target is not in sight)
-            self.data_holder.shooting_frame = frame
-            frame.show("frame")
-            filtered.show("filtered")
+            self.data_holder.frame = frame
+            if self.display:
+                frame.show("frame")
+                filtered.show("filtered")
             cvs.pressed_key() # must have delay
 
     @staticmethod
     def get_hsv_range():
-        with open('hsv_values.pickle', 'rb') as data:
+        script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
+        rel_path = "misc/hsv_values.pickle"
+        abs_file_path = os.path.join(script_dir, rel_path)
+        with open(abs_file_path, 'rb') as data:
             hsv_vals = pickle.load(data)["D"]
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
             v1 = 55
-            v2 = 225
+            v2 = 255
             hsv_vals = [(h1, s1, v1), (h2, s2, v2)]
             return hsv_vals
 

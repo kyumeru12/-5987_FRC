@@ -33,7 +33,7 @@ def main(data_holder):
         
     def gen():
         while True:
-            frame = arr2str(data_holder.shooting_frame)
+            frame = arr2str(data_holder.frame)
             yield (b'--frame\r\n'b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n\r\n')
 
     @app.route('/video_feed')

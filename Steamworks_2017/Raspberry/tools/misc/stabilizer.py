@@ -8,7 +8,7 @@ class Stabilizer:
 
     def insert_measure(self, measure):
         self.measures.append(measure)
-        del self.measures[:-5]
+        del self.measures[:-self.n_last_measure]
 
     def biggest(self):
         return max(self.measures)
