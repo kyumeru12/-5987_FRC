@@ -37,8 +37,9 @@ public class OI {
     // Start the command when the button is released  and let it run the command
     // until it is finished as determined by it's isFinished method.
     // button.whenReleased(new ExampleCommand());
-     Joystick stick = new Joystick(1);
-     Button button = new JoystickButton(stick, 2);
+     Joystick rightStick = new Joystick(1);
+     Joystick leftStick = new Joystick(2);
+     Button button = new JoystickButton(rightStick, 2);
 	 
      public OI() {
     	 button.whenPressed(new rotateByPixel(true));
