@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5987.robot;
 
 import org.usfirst.frc.team5987.robot.commands.AutoBasicGroupCommand;
+import org.usfirst.frc.team5987.robot.commands.JoystickDrivingCommand;
 import org.usfirst.frc.team5987.robot.subsystems.ExampleSubsystem;
 
 import edu.wpi.first.wpilibj.IterativeRobot;
@@ -100,6 +101,9 @@ public class Robot extends IterativeRobot {
 	 */
 	public void teleopPeriodic() {
 		Scheduler.getInstance().run();
+		double rightSpeed = oi.rightStick.getY();
+		double leftSpeed = oi.leftStick.getY();
+		new JoystickDrivingCommand(leftSpeed, rightSpeed);
 	}
 
 	/**
