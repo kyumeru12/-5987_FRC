@@ -4,7 +4,7 @@ import cvs
 import cv2
 import pickle
 from math import sin, cos, acos, sqrt, degrees, radians
-from misc.params import RESIZE_FACTOR
+from misc.params import RESIZE_FACTOR, BRIGHTNESS
 from misc.calcs import px2dist
 from misc.a_cool_networktable import SmartDashboard
 from misc.stabilizer import Stabilizer
@@ -22,7 +22,7 @@ class GearsAngle:
         myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
         self.SDboard["Gears RPI IP"] = myIP
         # self.distance_stabilizer = Stabilizer(7)
-        cam = cvs.UsbCam() # init Camera
+        cam = cvs.UsbCam(brightness=BRIGHTNESS) # init Camera
         while True:
             frame = cam.read().resize(RESIZE_FACTOR) #resize the picture;
             self.data_holder.gears_frame = frame

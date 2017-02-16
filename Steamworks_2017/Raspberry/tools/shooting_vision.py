@@ -4,7 +4,7 @@ import os
 import cvs
 import pickle
 from misc.calcs import px2angle, px2dist, dist2horizontal
-from misc.params import TARGET_ASPECT_RATIO, RESIZE_FACTOR
+from misc.params import TARGET_ASPECT_RATIO, RESIZE_FACTOR, BRIGHTNESS
 import cv2
 from misc.a_cool_networktable import SmartDashboard
 from misc.stabilizer import Stabilizer
@@ -21,6 +21,7 @@ class ShootingVision:
         self.distance_stabilizer = Stabilizer(7)
         self.display = display
         cam = cvs.UsbCam()
+        cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
         while True:
             frame = cam.read().resize(RESIZE_FACTOR)  # read a frame and resize it
             self.img_centerX = frame.width / 2
