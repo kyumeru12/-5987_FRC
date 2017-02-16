@@ -14,23 +14,16 @@ class ShootingVision:
 
     def __init__(self, data_holder, display ):
         self.SDboard = SmartDashboard()
-	self.SDboard["Color Code"] = "D"
-        color_code = self.SDboard["Color Code"]
-        self.SDboard["Brightness"] = BRIGHTNESS
+	self.SDboard["Color Palet"] = "D"
         myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
-        self.SDboard["Shooting RPI IP"] = myIP
-        
+        self.SDboard["Shooting RPI IP"] = myIP 
         self.data_holder = data_holder
-        self.hsv_vals = self.get_hsv_range(color_code)
+        self.hsv_vals = self.get_hsv_range()
         self.distance_stabilizer = Stabilizer(7)
         self.display = display
         cam = cvs.UsbCam()
+        cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
         while True:
-            if color_code != self.SDboard["Color Code"]:
-                 color_code = self.SDboard["Color Code"]
-                 self.hsv_vals = self.get_hsv_range(color_code)
-            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["Brightness"])
-            
             frame = cam.read().resize(RESIZE_FACTOR)  # read a frame and resize it
             self.img_centerX = frame.width / 2
             # frame = frame(cv2.flip, frame, -1) # flip image upside down
@@ -51,12 +44,13 @@ class ShootingVision:
             cvs.pressed_key() # must have delay
 
     
-    def get_hsv_range(self, color_code):
+    def get_hsv_range(self):
         script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
-        rel_path = "misc/hsv_values{}.pickle".format(color_code)
+        rel_path = "misc/hsv_values.pickle"
         abs_file_path = os.path.join(script_dir, rel_path)
+        
         with open(abs_file_path, 'rb') as data:
-            hsv_vals = pickle.load(data)['D']
+            hsv_vals = pickle.load(data)[palet]]
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
             #v1 = 55
             #v2 = 255
@@ -104,7 +98,7 @@ class ShootingVision:
         self.distance_stabilizer.insert_measure(horiz_dist)
         draw_data = {"Shooter Angle": angle, "X Difference": x_difference, "Horizontal Distance": self.distance_stabilizer.biggest()}
         #draw_data = {"D": diag_dist, "M": self.distance_stabilizer.median(), "L": self.distance_stabilizer.biggest(), "S": self.distance_stabilizer.smallest(), "AVG": self.distance_stabilizer.avg()}
-        network_data = {"Shooter Angle": angle, "Boiler X Difference": x_difference}
+        network_data = {"Shooter Angle": angle, "X Difference": x_difference}
         return network_data, draw_data
 
     def publish_data(self, network_data, draw_data, frame):

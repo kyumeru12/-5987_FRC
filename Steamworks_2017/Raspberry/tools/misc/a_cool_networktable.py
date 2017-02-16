@@ -18,11 +18,11 @@ class SmartDashboard:
             self.table.putBoolean(key, value)
 
     def __getitem__(self, key):
-        value_type = type(value)
         try:
-            self.table.getString(key)
+            res = self.table.getString(key)
         except:
             try:
-                self.table.getNumber(key)
+                res = self.table.getNumber(key)
             except:
-                self.table.getBoolean(key)
+                res = self.table.getBoolean(key)
+        return res

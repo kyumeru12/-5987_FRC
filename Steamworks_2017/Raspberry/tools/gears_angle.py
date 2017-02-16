@@ -22,7 +22,8 @@ class GearsAngle:
         myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
         self.SDboard["Gears RPI IP"] = myIP
         # self.distance_stabilizer = Stabilizer(7)
-        cam = cvs.UsbCam(brightness=BRIGHTNESS) # init Camera
+        cam = cvs.UsbCam() # init Camera
+        cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
         while True:
             frame = cam.read().resize(RESIZE_FACTOR) #resize the picture;
             self.data_holder.gears_frame = frame
@@ -88,7 +89,7 @@ class GearsAngle:
         with open(abs_file_path, 'rb') as data:
             hsv_vals = pickle.load(data)["D"]
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
-            v1 = 55
+            #v1 = 55
             v2 = 255
             hsv_vals = [(h1, s1, v1), (h2, s2, v2)]
             return hsv_vals
