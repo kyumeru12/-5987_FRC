@@ -1,3 +1,4 @@
+import commands
 import os
 import cvs
 import cv2
@@ -18,6 +19,8 @@ class GearsAngle:
         self.hsv_vals = self.get_hsv_range()
         print self.hsv_vals
         self.SDboard = SmartDashboard()
+        myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
+        self.SDboard["Gears RPI IP"] = myIP
         # self.distance_stabilizer = Stabilizer(7)
         cam = cvs.UsbCam() # init Camera
         while True:

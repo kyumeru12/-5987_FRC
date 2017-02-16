@@ -1,4 +1,5 @@
 from __future__ import division, print_function
+import commands
 import os
 import cvs
 import pickle
@@ -13,6 +14,8 @@ class ShootingVision:
 
     def __init__(self, data_holder, display ):
         self.SDboard = SmartDashboard()
+        myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
+        self.SDboard["Shooting RPI IP"] = myIP 
         self.data_holder = data_holder
         self.hsv_vals = self.get_hsv_range()
         self.distance_stabilizer = Stabilizer(7)
