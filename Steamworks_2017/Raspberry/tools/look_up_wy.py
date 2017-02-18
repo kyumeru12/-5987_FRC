@@ -9,8 +9,14 @@ import cv2
 from misc.a_cool_networktable import SmartDashboard
 from misc.stabilizer import Stabilizer
 import time
+import math
 
 
+def y2meter(y):
+    m = 2.757219434*(10**-9) * (y**4) - 9.158590228*(10**-7) * (y**3) +1.539446178*(10**-4) * (y**2) + 1.021729946*(10**-3) * y + 1.775946573
+    return m
+
+    
 class ShootingVision:
 
     def __init__(self, data_holder, display ):
@@ -33,7 +39,7 @@ class ShootingVision:
             if time.time() < 4:
                 myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
             self.SDboard["Shooting RPI IP"] = myIP
-            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["Brightness"])
+            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
             
             frame = cam.read().resize(RESIZE_FACTOR)  # read a frame and resize it
             self.img_centerX = frame.width / 2
@@ -106,7 +112,7 @@ class ShootingVision:
         diag_dist = px2dist(target.width)
         horiz_dist = dist2horizontal(diag_dist)
         self.distance_stabilizer.insert_measure(horiz_dist)
-        draw_data = {"Shooter Angle": angle, "X Difference": x_difference, "Horizontal Distance": self.distance_stabilizer.smallest()}
+        draw_data = {"Y": target.y, "M from shooter": y2meter(target.y)}
         #draw_data = {"D": diag_dist, "M": self.distance_stabilizer.median(), "L": self.distance_stabilizer.biggest(), "S": self.distance_stabilizer.smallest(), "AVG": self.distance_stabilizer.avg()}
         network_data = {"Shooter Angle": angle, "Boiler X Difference": x_difference}
         return network_data, draw_data
@@ -116,5 +122,8 @@ class ShootingVision:
             self.SDboard[key] = value
         self.SDboard["I've Got You In My Sight (bolier)"] = True
         for key, value in draw_data.iteritems():
-            frame.println("{} : {}".format(key, value))
+            frame.println("{} : {}".format(key, value), color=(255,255,255))
+class A: pass
+if __name__ == '__main__':
+    ShootingVision(A(), True)
 

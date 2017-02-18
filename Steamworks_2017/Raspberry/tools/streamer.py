@@ -16,6 +16,7 @@
 from flask import Flask, render_template, Response
 import cv2
 import commands
+from time import sleep
 
 app = Flask(__name__)
 
@@ -41,4 +42,5 @@ def main(data_holder):
         return Response(gen(),
                         mimetype='multipart/x-mixed-replace; boundary=frame')
 
+    sleep(5)
     app.run(host=commands.getstatusoutput("hostname -I")[1], debug=False)
