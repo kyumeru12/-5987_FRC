@@ -1,6 +1,9 @@
 import cvs
 import cv2
 
+with open("/home/pi/test.txt", "w") as f:
+    f.write("test")
+    f.close()
 
 cam = cvs.UsbCam()
 while True:
