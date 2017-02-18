@@ -20,7 +20,7 @@ data_holder = DataHolder()
 
 
 if streaming_start:
-    streaming = Thread(target=streamer, args=(data_holder, display))
+    streaming = Thread(target=streamer, args=(data_holder, ))
 gears_vision = Thread(target=GearsAngle, args=(data_holder, display))
 
 gears_vision.start()

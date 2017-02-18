@@ -4,7 +4,8 @@ import cvs
 import cv2
 import pickle
 from math import sin, cos, acos, sqrt, degrees, radians
-from misc.params import RESIZE_FACTOR, BRIGHTNESS, LIFT_TARGET_HEIGHT
+from misc.params import RESIZE_FACTOR, LIFT_TARGET_HEIGHT
+from misc import params
 from misc.calcs import px2dist
 from misc.a_cool_networktable import SmartDashboard
 from misc.stabilizer import Stabilizer
@@ -14,11 +15,12 @@ from misc.stabilizer import Stabilizer
 class GearsAngle:
 
     def __init__(self, data_holder, display):
+        print params.GBRIGHTNESS
         # SmartDashboard stuff
         self.SDboard = SmartDashboard()
         self.SDboard["Color Code"] = "D"
         color_code = self.SDboard["Color Code"]
-        self.SDboard["Brightness"] = BRIGHTNESS
+        self.SDboard["GBrightness"] = params.GBRIGHTNESS
         myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
         self.SDboard["Gears RPI IP"] = myIP
         # self.distance_stabilizer = Stabilizer(7)
@@ -28,12 +30,13 @@ class GearsAngle:
         self.hsv_vals = self.get_hsv_range(color_code)
         print self.hsv_vals
         cam = cvs.UsbCam() # init Camera
-        cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
+        cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["GBrightness"])
         while True:
             if color_code != self.SDboard["Color Code"]:
                  color_code = self.SDboard["Color Code"]
                  self.hsv_vals = self.get_hsv_range(color_code)
-            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["Brightness"])
+                 print 'Color Code was changed to - {}'.format(color_code)
+            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["GBrightness"])
             
             frame = cam.read().resize(RESIZE_FACTOR) #resize the picture;
             self.data_holder.gears_frame = frame
@@ -96,7 +99,7 @@ class GearsAngle:
    
     def get_hsv_range(self, color_code):
         script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
-        rel_path = "misc/hsv_values{}.pickle".format(color_code)
+        rel_path = "misc/hsv_valuesG{}.pickle".format(self.SDboard["Color Code"])
         abs_file_path = os.path.join(script_dir, rel_path)
         with open(abs_file_path, 'rb') as data:
             hsv_vals = pickle.load(data)['D']
