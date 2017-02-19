@@ -23,6 +23,17 @@ def px2dist(px, target_m=TARGET_WIDTH):
 
     return y
 
+def y2rpm(y):
+    """
+    Convert the y value to the RPM for the shooting based on a look up table
+    :param y: y value of center of target from the top in pixels
+    :return : ticks per seconds for the shooting motors
+    """
+    y *= 0.5 / RESIZE_FACTOR
+    rpm = 5.739021037*(10**-5)*(y**3) - 1.021378126*(10**-2)*(y**2) + 1.464129802*y+735.4993014
+    return rpm
+    
+
 def y2meter(y):
     """
     Convert the y value to METERS (horizontal) from shooter (+ball radius /2) to the center of the boiler

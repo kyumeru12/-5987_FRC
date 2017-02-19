@@ -3,7 +3,7 @@ import commands
 import os
 import cvs
 import pickle
-from misc.calcs import px2angle, px2dist, dist2horizontal
+from misc.calcs import px2angle, px2dist, dist2horizontal, y2rpm
 from misc.params import TARGET_ASPECT_RATIO, RESIZE_FACTOR, BRIGHTNESS
 import cv2
 from misc.a_cool_networktable import SmartDashboard
@@ -14,6 +14,7 @@ import time
 class ShootingVision:
 
     def __init__(self, data_holder, display ):
+        time.sleep(4)
         self.SDboard = SmartDashboard()
 	self.SDboard["Color Code"] = "D"
         color_code = self.SDboard["Color Code"]
@@ -101,14 +102,15 @@ class ShootingVision:
         """
         
         """
-        angle = px2angle(target.width)
+        #angle = px2angle(target.width)
         x_difference = (target.x - self.img_centerX) / self.img_centerX
-        diag_dist = px2dist(target.width)
-        horiz_dist = dist2horizontal(diag_dist)
-        self.distance_stabilizer.insert_measure(horiz_dist)
-        draw_data = {"Shooter Angle": angle, "X Difference": x_difference, "Horizontal Distance": self.distance_stabilizer.smallest()}
+        rpm = y2rpm(target.y)
+        #diag_dist = px2dist(target.width)
+        #horiz_dist = dist2horizontal(diag_dist)
+        #self.distance_stabilizer.insert_measure(horiz_dist)
+        draw_data = {"X Difference": x_difference, "RPM": rpm}
         #draw_data = {"D": diag_dist, "M": self.distance_stabilizer.median(), "L": self.distance_stabilizer.biggest(), "S": self.distance_stabilizer.smallest(), "AVG": self.distance_stabilizer.avg()}
-        network_data = {"Shooter Angle": angle, "Boiler X Difference": x_difference}
+        network_data = {"Boiler X Difference": x_difference, "Boiler RPM": rpm}
         return network_data, draw_data
 
     def publish_data(self, network_data, draw_data, frame):
