@@ -4,7 +4,7 @@ import cvs
 import cv2
 import pickle
 from math import sin, cos, acos, sqrt, degrees, radians
-from misc.params import RESIZE_FACTOR, BRIGHTNESS
+from misc.params import RESIZE_FACTOR, BRIGHTNESS, LIFT_TARGET_HEIGHT
 from misc.calcs import px2dist
 from misc.a_cool_networktable import SmartDashboard
 from misc.stabilizer import Stabilizer
@@ -14,17 +14,27 @@ from misc.stabilizer import Stabilizer
 class GearsAngle:
 
     def __init__(self, data_holder, display):
-        self.display = display
-        self.data_holder = data_holder
-        self.hsv_vals = self.get_hsv_range()
-        print self.hsv_vals
+        # SmartDashboard stuff
         self.SDboard = SmartDashboard()
+        self.SDboard["Color Code"] = "D"
+        color_code = self.SDboard["Color Code"]
+        self.SDboard["Brightness"] = BRIGHTNESS
         myIP = commands.getstatusoutput("hostname -I")[1] # find the RPI's IP
         self.SDboard["Gears RPI IP"] = myIP
         # self.distance_stabilizer = Stabilizer(7)
+
+        self.display = display
+        self.data_holder = data_holder
+        self.hsv_vals = self.get_hsv_range(color_code)
+        print self.hsv_vals
         cam = cvs.UsbCam() # init Camera
         cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, BRIGHTNESS)
         while True:
+            if color_code != self.SDboard["Color Code"]:
+                 color_code = self.SDboard["Color Code"]
+                 self.hsv_vals = self.get_hsv_range(color_code)
+            cam.cam.set(cv2.CAP_PROP_BRIGHTNESS, self.SDboard["Brightness"])
+            
             frame = cam.read().resize(RESIZE_FACTOR) #resize the picture;
             self.data_holder.gears_frame = frame
             self.img_centerX = frame.width / 2 #resizing;
@@ -58,12 +68,14 @@ class GearsAngle:
             cnt_left = cnts.leftmost()
             self.cnt_right = cnt_right
             self.cnt_left = cnt_left
-            left_dist = px2dist(cnt_left.height, 0.13)
-            right_dist = px2dist(cnt_right.height, 0.13)
+            height = LIFT_TARGET_HEIGHT
+            left_dist = px2dist(cnt_left.height, height)
+            right_dist = px2dist(cnt_right.height, height)
             avg_dist = (left_dist + right_dist) / 2.0
             angle = self.get_gears_angle(right_dist, left_dist)
             x_avg = (cnt_right.x + cnt_left.x) / 2.0
             x_difference = (x_avg - self.img_centerX) / self.img_centerX
+            
             draw_data = {"right dist": right_dist, "left dist": left_dist,"x diff": x_difference, "angle": angle}
             network_data = {"Lift X Difference": x_difference, "Lift Distance": avg_dist, "I've Got Lift In My Sight": True}
         else:
@@ -81,16 +93,16 @@ class GearsAngle:
             frame.draw_contour(self.cnt_right, color=(0,0,0))
             frame.draw_contour(self.cnt_left)
 
-    @staticmethod
-    def get_hsv_range():
+   
+    def get_hsv_range(self, color_code):
         script_dir = os.path.dirname(__file__)  # <-- absolute dir the script is in
-        rel_path = "misc/hsv_values.pickle"
+        rel_path = "misc/hsv_values{}.pickle".format(color_code)
         abs_file_path = os.path.join(script_dir, rel_path)
         with open(abs_file_path, 'rb') as data:
-            hsv_vals = pickle.load(data)["D"]
+            hsv_vals = pickle.load(data)['D']
             (h1, s1, v1), (h2, s2, v2) = hsv_vals
-            #v1 = 55
-            v2 = 255
+            #v1 = 200
+            #v2 = 255
             hsv_vals = [(h1, s1, v1), (h2, s2, v2)]
             return hsv_vals
         
