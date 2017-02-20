@@ -23,6 +23,17 @@ def px2dist(px, target_m=TARGET_WIDTH):
 
     return y
 
+def y2meter(y):
+    """
+    Convert the y value to METERS (horizontal) from shooter (+ball radius /2) to the center of the boiler
+    """
+    y *= RESIZE_FACTOR / 0.5 # convert the y value according to the RESIZE_FACTOR
+    m = 2.757219434*(10**-9) * (y**4) - 9.158590228*(10**-7) * (y**3) +1.539446178*(10**-4) * (y**2) + 1.021729946*(10**-3) * y + 1.775946573
+    return m
+
+def y2angle(y):
+    m = y2meter(y)
+    return dist2angle(m)
 
 def dist2horizontal(dist):
     """
